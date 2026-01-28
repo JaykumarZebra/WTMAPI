@@ -4,6 +4,7 @@ import com.jayzebra.feedsmodule.adapter.out.entity.FeedOperationEntity;
 import com.jayzebra.feedsmodule.domain.dto.FeedOperationRequestDto;
 import com.jayzebra.feedsmodule.domain.port.input.FeedOperationUseCase;
 import com.jayzebra.feedsmodule.domain.port.output.FeedOperationRepositoryPort;
+import org.springframework.stereotype.Service;
 
 
 import java.time.OffsetDateTime;
@@ -14,6 +15,7 @@ import java.util.UUID;
  * It's responsible for processing requests to perform operations on a feed,
  * creating a record of that operation.
  */
+@Service
 public class FeedOperationService implements FeedOperationUseCase {
 
     // The output port for the feed operation repository.
