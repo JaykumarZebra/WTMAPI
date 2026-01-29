@@ -55,41 +55,95 @@ The MyWork API is the primary interface for workforce-facing applications within
 
 ---
 
-## 🏛️ Core Architecture: The Hexagonal Approach
+---
 
-This project is built using a **Hexagonal Architecture** (also known as Ports and Adapters). This pattern puts the core business logic and domain at the center of the application, isolated from external technologies and delivery mechanisms.
+## 🧱 Overall Architecture: The Modular Monolith
+
+This project is architected as a **Modular Monolith**. Instead of a single, undifferentiated codebase, the application is partitioned into a set of loosely-coupled modules, where each module represents a distinct business capability (e.g., "User Management", "Feeds", "Surveys").
 
 ### Architectural Principles
 
-*   **The Core is King**: The central hexagon contains pure business logic, domain models, and port interfaces. It is framework-independent and represents the heart of the application.
-*   **Ports as Explicit Contracts**: Simple Java interfaces (Ports) define how the core communicates with the outside world.
-*   **Adapters as Implementation Details**: Adapters implement the ports, connecting the core to external technologies like web frameworks (Spring MVC), databases (JPA/Hibernate), and message brokers.
+*   **High Cohesion**: Each module encapsulates a specific part of the business domain.
+*   **Low Coupling**: Modules communicate through well-defined public APIs (e.g., Java interfaces or events), not by accessing each other's internal implementation details. This prevents the system from becoming a tangled "big ball of mud".
+*   **Independent Development**: Teams can work on different modules in parallel with minimal friction.
+*   **Clear Boundaries**: The separation between business domains is made explicit in the codebase structure.
 
-This decoupling ensures the core business logic can be tested in complete isolation and that external technologies can be swapped out with minimal impact on the application's core.
+This approach provides many of the benefits of microservices (like clear boundaries and scalability of development) while avoiding the operational complexity of a distributed system.
 
-### Project Structure Mapping
+---
 
-The directory structure directly reflects the hexagonal concepts:
+## 🏛️ Module Architecture: The Hexagonal Approach
+
+Within each module described above, we apply the **Hexagonal Architecture** (also known as Ports and Adapters). This pattern places the module's core business logic and domain at its center, completely isolated from external technologies and delivery mechanisms.
+
+### Hexagonal Principles
+
+*   **The Core is King**: The central hexagon contains pure, framework-independent business logic, domain models, and port interfaces. This is the heart of the module.
+*   **Ports as Explicit Contracts**: Simple Java interfaces (Ports) define the contract for how the core logic interacts with the outside world.
+*   **Adapters as Implementation Details**: Adapters implement the ports, connecting the core to external technologies like web frameworks (Spring MVC), databases (JPA/Hibernate), or message brokers.
+
+This decoupling ensures that each module's core logic can be tested in isolation and that its technical dependencies can be swapped out with minimal impact.
+
+---
+
+
+## 📁 Project Structure
+
+The directory structure directly reflects both the Modular Monolith and Hexagonal concepts.
 
 ```text
 src/main/java/com/mywork/
+│
 ├── Application.java               // Spring Boot entry point
-├── core/                          // THE HEXAGON (No framework dependencies)
-│   ├── domain/                    // - Core domain objects (Feed, Survey, User)
-│   ├── exception/                 // - Custom business exceptions
-│   ├── port/                      // - Port interfaces (contracts)
-│   │   ├── in/                    //   - Inbound ports (driven by primary adapters)
-│   │   └── out/                   //   - Outbound ports (driving secondary adapters)
-│   └── service/                   // - Core application services and use cases
-├── adapters/                      // ADAPTERS (Framework-dependent implementations)
-│   ├── in/                        // - Primary / Driving Adapters
-│   │   └── web/                   //   - Spring MVC Controllers
-│   └── out/                       // - Secondary / Driven Adapters
-│       ├── persistence/           //   - JPA/Hibernate repository implementations
-│       └── messaging/             //   - (Example) RabbitMQ/Kafka producer implementations
-└── config/                        // Spring configuration, bean wiring, security setup
+│
+├── feeds/                         // --- MODULE 1: Feeds ---
+│   ├── core/                      // THE HEXAGON (No framework dependencies)
+│   │   ├── domain/
+│   │   ├── port/
+│   │   └── service/
+│   └── adapters/                  // ADAPTERS (Framework-dependent)
+│       ├── in/
+│       └── out/
+│
+├── surveys/                       // --- MODULE 2: Surveys ---
+│   ├── core/                      // THE HEXAGON
+│   │   ├── domain/
+│   │   ├── port/
+│   │   └── service/
+│   └── adapters/                  // ADAPTERS
+│       ├── in/
+│       └── out/
+│
+├── shared/                        // Optional: For code shared between modules
+│   └── config/                    // e.g., Global Spring configuration, security
+│
+└── ...                            // Other modules...
 
 
+```
+---
+
+## ✨ What This Service Does
+
+This project defines the external API for the **Workcloud Task Management – MyWork** service. Its primary purpose is to provide a comprehensive set of tools for the workforce to manage their tasks, communications, and user profiles.
+
+The API exposes the following core capabilities:
+
+*   **Centralized Task & Feed Management**:
+    *   Allows employees to view, create, and manage their work items, presented as "Feeds."
+    *   Supports the full lifecycle of a task, including operations like claiming, reassigning, acknowledging, and completing work.
+
+*   **Communication & Collaboration**:
+    *   Enables users to add, update, and delete contextual notes on specific feeds, facilitating clear communication around tasks.
+
+*   **Real-Time Management (RTM)**:
+    *   Provides endpoints for supervisors or managers to perform real-time actions, such as sending surveys, broadcasting messages, or nudging employees.
+
+*   **Feedback & Data Collection**:
+    *   Includes a survey system that allows for the creation of surveys and the submission of responses from the workforce.
+
+*   **User & Profile Management**:
+    *   Handles essential user-centric functions, including managing user accounts, sessions (login/logout), and personal assets like profile images.
 
 ---
 
@@ -115,24 +169,36 @@ Our error handling provides a predictable, consistent experience for API consume
 }
 ```
 
-### Comprehensive Testing Pyramid
+---
 
-We enforce a strict, multi-layered testing strategy to ensure code quality and correctness.
+## 🧪 Project Testing Strategy
 
-1.  **Unit Tests (Fastest, ~70% of tests)**
-    *   **Purpose**: Validate the core business logic in complete isolation.
-    *   **Scope**: Services, domain models, and business rules within the `core` module.
-    *   **Technology**: JUnit 5, Mockito. No Spring context needed.
+Our testing strategy is centered around comprehensive **Unit Testing**, leveraging the clean separation provided by the Hexagonal Architecture. This ensures that the core business logic, the most critical part of our application, is robust, correct, and reliable.
 
-2.  **Integration Tests (~20% of tests)**
-    *   **Purpose**: Verify that adapters correctly implement their ports and integrate with external technologies.
-    *   **Scope**: Persistence adapters (`@DataJpaTest`), Web adapters (`@WebMvcTest`), etc.
-    *   **Technology**: JUnit 5, Spring Test, MockMvc, H2/Testcontainers.
+### Unit Tests: The Foundation
 
-3.  **End-to-End Tests (Slowest, ~10% of tests)**
-    *   **Purpose**: Validate complete application flows from the API endpoint to the database and back.
-    *   **Scope**: A small number of critical user journeys.
-    *   **Technology**: `@SpringBootTest` with a full application context.
+*   **Purpose**: To validate the core business logic and domain rules in complete isolation from any external dependencies or frameworks (like the web layer or database).
+
+*   **Scope**:
+    *   **What is tested**: All classes within the `core` package of each module. This includes `services`, `domain` objects, and any custom business `exceptions`.
+    *   **How it's tested**: Outbound ports (interfaces to the database, message brokers, etc.) are replaced with "test doubles" or "mocks". This allows us to simulate any external behavior and verify that our core logic behaves correctly under all conditions.
+
+*   **Key Benefits**:
+    *   **Speed**: These tests execute in milliseconds because they don't require starting a Spring context, spinning up a database, or making network calls.
+    *   **Precision**: When a test fails, it points directly to a bug in the business logic, not an issue with configuration or external infrastructure.
+    *   **Architectural Enforcement**: Writing tests for the core forces developers to respect the architectural boundaries and keep the business logic pure and framework-independent.
+
+*   **Technology**:
+    *   **JUnit 5**: The primary framework for writing tests.
+    *   **Mockito**: Used to create mock implementations of our outbound port interfaces.
+
+To run the full suite of unit tests, use the following command:
+
+*Using Maven:*
+```sh
+mvn test
+```
+---
 
 ### Security First Design
 
@@ -226,3 +292,46 @@ The full API contract is defined using **OpenAPI 3.1.0**. The specification file
 *   **[openapi.yaml](./openapi.yaml)**
 
 It can also be viewed interactively via Swagger UI at `http://localhost:8080/swagger-ui.html` when the application is running.
+
+
+---
+
+## 🔌 API Endpoints Summary
+
+The following table provides a high-level overview of all available endpoints in the Workcloud Task Management API.
+
+| Method | Endpoint                          | Description                     |
+| :----- | :-------------------------------- | :------------------------------ |
+| **Feeds** | | |
+| `GET`    | `/feeds`                          | List all available feeds        |
+| `POST`   | `/feeds`                          | Create a new feed               |
+| `GET`    | `/feeds/{feedId}`                 | Get a single feed by its ID     |
+| `PATCH`  | `/feeds/{feedId}`                 | Update an existing feed         |
+| `DELETE` | `/feeds/{feedId}`                 | Delete a specific feed          |
+| | | |
+| **Feed Operations** | | |
+| `POST`   | `/feeds/{feedId}/operations`      | Perform an operation on a feed (e.g., claim, complete) |
+| | | |
+| **Feed Notes** | | |
+| `GET`    | `/feeds/{feedId}/notes`           | List all notes for a specific feed |
+| `POST`   | `/feeds/{feedId}/notes`           | Create a new note on a feed     |
+| `PATCH`  | `/feeds/{feedId}/notes/{noteId}`  | Update an existing feed note    |
+| `DELETE` | `/feeds/{feedId}/notes/{noteId}`  | Delete a specific feed note     |
+| | | |
+| **Surveys** | | |
+| `GET`    | `/surveys`                        | List all available surveys      |
+| `POST`   | `/surveys`                        | Create a new survey             |
+| `POST`   | `/surveys/{surveyId}/responses`   | Submit a response to a survey   |
+| | | |
+| **Real-Time Management (RTM)** | | |
+| `POST`   | `/rtm/operations`                 | Perform a real-time management operation (e.g., broadcast) |
+| | | |
+| **Users & Sessions** | | |
+| `GET`    | `/users`                          | List all users                  |
+| `GET`    | `/users/{userId}`                 | Get a single user by their ID   |
+| `PUT`    | `/users/{userId}/image`           | Upload a user's profile image   |
+| `POST`   | `/sessions/login`                 | Record a user login event       |
+| `POST`   | `/sessions/logout`                | Log a user out of their session |
+
+---
+
