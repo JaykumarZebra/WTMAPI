@@ -142,7 +142,7 @@ WTMMyWorkAPI-parent/
 ```
 
 ## Workflow Diagram Of Project
-![Workflow Diagram of Project](assets/image.jpg)
+![Workflow Diagram of Project](assets/Recording%202026-02-02%20112057.gif)
 
 ---
 
@@ -194,9 +194,9 @@ Our error handling provides a predictable, consistent experience for API consume
 
 ---
 
-##  Project Testing Strategy
+## 🧪 Project Testing Strategy
 
-Our testing strategy is centered around comprehensive **Unit Testing**, leveraging the clean separation provided by the Hexagonal Architecture. This ensures that the core business logic, the most critical part of our application, is robust, correct, and reliable.
+Our testing strategy is layered, starting with a strong foundation of unit tests and enhanced by mutation testing to ensure not just coverage, but true effectiveness. This approach leverages the clean separation provided by the Hexagonal Architecture to guarantee our core business logic is robust, correct, and reliable.
 
 ### Unit Tests: The Foundation
 
@@ -207,20 +207,55 @@ Our testing strategy is centered around comprehensive **Unit Testing**, leveragi
     *   **How it's tested**: Outbound ports (interfaces to the database, message brokers, etc.) are replaced with "test doubles" or "mocks". This allows us to simulate any external behavior and verify that our core logic behaves correctly under all conditions.
 
 *   **Key Benefits**:
-    *   **Speed**: These tests execute in milliseconds because they don't require starting a Spring context, spinning up a database, or making network calls.
-    *   **Precision**: When a test fails, it points directly to a bug in the business logic, not an issue with configuration or external infrastructure.
-    *   **Architectural Enforcement**: Writing tests for the core forces developers to respect the architectural boundaries and keep the business logic pure and framework-independent.
+    *   **Speed**: These tests execute in milliseconds because they don't require a Spring context or external infrastructure.
+    *   **Precision**: When a test fails, it points directly to a bug in the business logic, not a configuration issue.
+    *   **Architectural Enforcement**: This strategy reinforces the architectural boundaries, keeping the business logic pure and framework-independent.
+
+### Mutation Testing: Ensuring Test Effectiveness
+
+While unit tests verify that our code works as expected, mutation testing verifies that our *tests are effective enough to detect faults*. We go beyond simple line coverage to measure the true quality of our test suite.
+
+*   **Purpose**: To challenge our existing unit tests by introducing small, deliberate defects (mutations) into the production code and checking if the tests can find them.
+
+*   **How it Works**:
+    1.  The mutation testing engine (Pitest) modifies the compiled bytecode on the fly (e.g., changing a `>` to a `<=`).
+    2.  It then runs our unit tests against this "mutated" code.
+    3.  If the tests fail, the mutant is considered "killed" – a sign of a good, effective test. If the tests still pass, the mutant "survives," revealing a gap in our testing.
+
+*   **Our Quality Standard**: We have achieved a **mutation coverage score of 88% across all modules**. This high score demonstrates that our test suite is not just comprehensive in scope, but is also highly effective at catching potential bugs before they reach production.
 
 *   **Technology**:
     *   **JUnit 5**: The primary framework for writing tests.
     *   **Mockito**: Used to create mock implementations of our outbound port interfaces.
+    *   **Pitest (PIT)**: The leading mutation testing framework for Java, used to measure the effectiveness of our tests.
 
-To run the full suite of unit tests, use the following command:
+---
 
-*Using Maven:*
-```sh
-mvn test
-```
+### Running the Tests
+
+To run the full suite of tests, use the following commands from the project root:
+
+*   **Run All Unit Tests:**
+    ```bash
+    ./mvnw clean test
+    ```
+
+*   **Run Mutation Tests (Pitest):**
+    ```bash
+    ./mvnw org.pitest:pitest-maven:mutationCoverage
+    ```
+    After running, an HTML report will be generated in the `target/pit-reports` directory of each module, showing exactly which mutants were killed or survived.
+
+---
+## Mutation Testing Reports
+### Feeds-module
+![Feeds Module](assets/PitReportFeedsModule.png)
+### RTM-module
+![RTM](assets/PitReportRTM%20.png)
+### Survey-module
+![Survey](assets/Surveys.png)
+### User-module
+![User](assets/UserModule.png)
 ---
 
 ### Security First Design
@@ -325,11 +360,11 @@ Once the application is deployed, you can access the API documentation and inter
 
 *   **Swagger UI Link:**
     ```sh
-     a2532e2402329463b97c7d8badde469c-1899026621.ap-south-1.elb.amazonaws.com/swagger-ui/index.html
+     a01d31d4152984c61bdf8d2fee4e216d-485902948.ap-south-1.elb.amazonaws.com/swagger-ui/index.html
     ```
 *   **Password:** 
     ```sh
-     445fa830-41da-4369-aeac-a3eb2b91d06b
+     1017eaea-63ce-4b44-8ee7-2cfd27f18fea
     ```
 
 This interface provides a convenient way to explore and test the API in the deployed environment.
