@@ -19,7 +19,6 @@ This project serves as a blueprint for building robust, scalable, and highly mai
     *   [Overall Architecture: The Modular Monolith](#overall-architecture-the-modular-monolith)
     *   [Module Architecture: The Hexagonal Approach](#module-architecture-the-hexagonal-approach)
     *   [Project Structure](#project-structure)
-    *   [Workflow Diagram](#workflow-diagram-of-project)
 3.  [**🛠️ System Design & Engineering**](#system-design--engineering-practices)
     *   [Robust Error Handling](#robust-error-handling-strategy)
     *   [Comprehensive Testing Strategy](#project-testing-strategy)
@@ -33,6 +32,7 @@ This project serves as a blueprint for building robust, scalable, and highly mai
     *   [Local Builds](#running-local-builds)
     *   [CI/CD Pipeline Overview](#cicd-pipeline-overview)
     *   [Deployed Application Access](#accessing-the-deployed-application)
+    *   [Workflow Diagram](#workflow-diagram-of-deployment)
 6.  [**📜 API Specification**](#api-endpoints--specification)
     *   [Endpoint Summary](#api-endpoints-summary)
 
@@ -141,8 +141,6 @@ WTMMyWorkAPI-parent/
 
 ```
 
-## Workflow Diagram Of Project
-![Workflow Diagram of Project](assets/Recording%202026-02-02%20112057.gif)
 
 ---
 
@@ -323,25 +321,18 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 1.  **Clone the repository:**
     ```sh
-    git clone https://github.com/your-username/your-repo-name.git
-    cd your-repo-name
+    git clone https://github.com/your-username/WTMAPI.git
+    cd WTMAPI
     ```
 
-2.  **Configure local properties:**
-    Create a file named `src/main/resources/application-local.properties` and add your local database configuration:
-    ```properties
-    spring.datasource.url=jdbc:postgresql://localhost:5432/myworkdb
-    spring.datasource.username=user
-    spring.datasource.password=password
-    ```
 
-3.  **Build the project:**
+2**Build the project:**
     This command will compile the code and run all the unit and integration tests.
     ```sh
     mvn clean install
     ```
 
-4.  **Run the application:**
+3**Run the application:**
     Activate the `local` profile to use your local configuration.
     ```sh
     java -jar -Dspring.profiles.active=local target/mywork-api-1.1.0.jar
@@ -369,14 +360,15 @@ Once the application is deployed, you can access the API documentation and inter
 
 This interface provides a convenient way to explore and test the API in the deployed environment.
 
-
+## Workflow Diagram Of Deployment
+![Workflow Diagram of Deployment](assets/Recording%202026-02-02%20112057.gif)
 
 
 ##  API Endpoints & Specification
 
 The full API contract is defined using **OpenAPI 3.1.0**. The specification file serves as the single source of truth for all API interactions.
 
-*   **[openapi.yaml](./openapi.yaml)**
+*   **[openapi.yaml](assets/openapi.yaml)**
 
 It can also be viewed interactively via Swagger UI at `http://localhost:8080/swagger-ui.html` when the application is running.
 
