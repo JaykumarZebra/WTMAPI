@@ -2,14 +2,15 @@ package com.jayzebra.feedsmodule.domain.dto;
 
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 //DTO for requesting feed update
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class FeedUpdateRequestDto {
 
     //Validation to ensure title should not be blank

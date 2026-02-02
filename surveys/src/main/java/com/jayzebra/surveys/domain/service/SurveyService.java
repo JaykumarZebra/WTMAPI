@@ -1,5 +1,6 @@
 package com.jayzebra.surveys.domain.service;
 
+import com.jayzebra.common.exceptions.ResourceNotFoundException;
 import com.jayzebra.surveys.adapter.output.entity.Survey;
 import com.jayzebra.surveys.adapter.output.entity.SurveyResponse;
 import com.jayzebra.surveys.domain.dto.SurveyCreateDto;
@@ -38,7 +39,7 @@ public class SurveyService implements SurveyUseCase {
     public void submitSurveyResponse(String surveyId, SurveyResponseCreateDto responseDto) {
         // Ensure the survey exists before accepting a response
         surveyRepositoryPort.findSurveyById(surveyId)
-                .orElseThrow(() -> new RuntimeException("Survey not found with id: " + surveyId));
+                .orElseThrow(() -> new ResourceNotFoundException("Survey not found with id: " + surveyId));
 
         SurveyResponse response = new SurveyResponse();
         response.setId(UUID.randomUUID().toString());

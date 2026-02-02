@@ -1,8 +1,6 @@
 package com.jayzebra.feedsmodule.domain.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.modulith.NamedInterface;
 
@@ -10,10 +8,13 @@ import org.springframework.modulith.NamedInterface;
  * DTO for the POST /feeds request body.
  * Based on the FeedCreate schema in the OpenAPI specification, using Lombok.
  */
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @NamedInterface
+@EqualsAndHashCode
+@ToString
 public class FeedCreateRequestDto {
     @NotBlank(message = "Title cannot be empty.")
     private String title;

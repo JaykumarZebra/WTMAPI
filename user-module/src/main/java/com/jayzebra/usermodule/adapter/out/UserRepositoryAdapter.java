@@ -1,4 +1,4 @@
-package com.jayzebra.usermodule.adapter;
+package com.jayzebra.usermodule.adapter.out;
 
 import com.jayzebra.usermodule.adapter.out.entity.UserEntity;
 import com.jayzebra.usermodule.adapter.out.repository.UserRepository;

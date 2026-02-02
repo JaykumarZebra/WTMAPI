@@ -1,13 +1,14 @@
 package com.jayzebra.feedsmodule.domain.model;
 
-import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
+
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.UUID;
 
 @Getter
-@Data
+@Setter
 public final class FeedNote {
 
     private final UUID id;

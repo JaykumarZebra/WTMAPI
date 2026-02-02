@@ -3,13 +3,16 @@ package com.jayzebra.feedsmodule.adapter.out.entity;
 import com.jayzebra.feedsmodule.domain.model.FeedsJsonToMapConverter;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.OffsetDateTime;
 import java.util.Map;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class FeedOperationEntity {
     @Id
     private String id;

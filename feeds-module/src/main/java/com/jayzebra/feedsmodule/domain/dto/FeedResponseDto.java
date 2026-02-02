@@ -1,9 +1,8 @@
 package com.jayzebra.feedsmodule.domain.dto;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -11,9 +10,12 @@ import java.util.UUID;
  * DTO representing a single Feed item in API responses.
  * Based on the Feed schema in the OpenAPI specification, using Lombok.
  */
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class FeedResponseDto {
     private UUID id;
     private String title;

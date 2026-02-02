@@ -1,4 +1,4 @@
-package com.jayzebra.usermodule.adapter;
+package com.jayzebra.usermodule.adapter.out;
 import com.jayzebra.usermodule.adapter.out.entity.SessionEventEntity;
 import com.jayzebra.usermodule.adapter.out.repository.SessionEventRepository;
 import com.jayzebra.usermodule.domain.port.out.SessionEventRepositoryPort;

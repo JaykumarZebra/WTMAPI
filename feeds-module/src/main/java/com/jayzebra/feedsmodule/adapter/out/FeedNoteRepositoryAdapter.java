@@ -1,12 +1,10 @@
-package com.jayzebra.feedsmodule.adapter;
+package com.jayzebra.feedsmodule.adapter.out;
 
-import com.jayzebra.common.config.ModelMapperConfig;
 import com.jayzebra.feedsmodule.adapter.out.entity.FeedEntity;
 import com.jayzebra.feedsmodule.adapter.out.entity.FeedNoteEntity;
 import com.jayzebra.feedsmodule.adapter.out.repository.FeedNoteRepository;
 import com.jayzebra.feedsmodule.domain.model.FeedNote;
 import com.jayzebra.feedsmodule.domain.port.output.FeedNoteRepositoryPort;
-import lombok.AllArgsConstructor;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;

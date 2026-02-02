@@ -1,5 +1,6 @@
 package com.jayzebra.feedsmodule.domain.service;
 
+import com.jayzebra.common.exceptions.ResourceNotFoundException;
 import com.jayzebra.feedsmodule.domain.model.FeedNote;
 import com.jayzebra.feedsmodule.domain.port.input.CreateFeedNoteUseCase;
 import com.jayzebra.feedsmodule.domain.port.input.DeleteFeedNoteUseCase;
@@ -59,7 +60,7 @@ public class FeedNoteService implements CreateFeedNoteUseCase, DeleteFeedNoteUse
     public FeedNote updateFeedNote(UUID feedId, UUID noteId, String newMessage) {
         FeedNote existingNote = feedNoteRepositoryPort.findById(noteId)
                 // If the note is not found, a RuntimeException is thrown
-                .orElseThrow(() -> new RuntimeException("Note not found with ID: " + noteId));
+                .orElseThrow(() -> new ResourceNotFoundException("Note not found with ID: " + noteId));
         existingNote.updateMessage(newMessage);
         // The updated note is saved back to the repository.
         return feedNoteRepositoryPort.save(existingNote);

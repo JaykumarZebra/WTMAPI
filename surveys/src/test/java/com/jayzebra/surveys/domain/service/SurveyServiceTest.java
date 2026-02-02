@@ -1,5 +1,6 @@
 package com.jayzebra.surveys.domain.service;
 
+import com.jayzebra.common.exceptions.ResourceNotFoundException;
 import com.jayzebra.surveys.adapter.output.entity.Survey;
 import com.jayzebra.surveys.adapter.output.entity.SurveyResponse;
 import com.jayzebra.surveys.domain.dto.SurveyCreateDto;
@@ -18,6 +19,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -115,20 +117,27 @@ class SurveyServiceTest {
     // INTENTIONALLY OMITTED TEST:
     // We are not writing a test for the case where the survey is NOT found.
     // A complete test suite would include the following:
-    /*
     @Test
-    @DisplayName("Should throw an exception when submitting a response for a non-existent survey")
-    void submitSurveyResponse_should_throwException_whenSurveyNotFound() {
-        // --- ARRANGE ---
+    @DisplayName("submitSurveyResponse should throw ResourceNotFoundException for non-existent surveyId")
+    void submitSurveyResponse_shouldThrowExceptionForInvalidSurveyId() {
+        // Given
         String nonExistentSurveyId = "non-existent-id";
-        SurveyResponseCreateDto responseDto = new SurveyResponseCreateDto();
+        SurveyResponseCreateDto responseDto = new SurveyResponseCreateDto(); // Dummy DTO
+        // Configure the mock port to return an empty Optional for this ID
         when(surveyRepositoryPort.findSurveyById(nonExistentSurveyId)).thenReturn(Optional.empty());
 
-        // --- ACT & ASSERT ---
-        assertThrows(RuntimeException.class, () -> {
-            surveyService.submitSurveyResponse(nonExistentSurveyId, responseDto);
-        });
+        // When/Then
+        // Assert that calling the method with the non-existent ID throws the expected exception
+        ResourceNotFoundException thrownException = assertThrows(
+                ResourceNotFoundException.class,
+                () -> surveyService.submitSurveyResponse(nonExistentSurveyId, responseDto)
+        );
+
+        // Optionally, you can also assert the exception message is correct
+        assertThat(thrownException.getMessage()).isEqualTo("Survey not found with id: " + nonExistentSurveyId);
+
+        // Verify that saveSurveyResponse was NOT called in this failure case
+        verify(surveyRepositoryPort, never()).saveSurveyResponse(any(SurveyResponse.class));
     }
-    */
 }
 

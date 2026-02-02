@@ -17,8 +17,8 @@ public class RtmOperationRepositoryAdapter implements RtmOperationRepositoryPort
 
     //to save in DB
     @Override
-    public RTMEntity save(RTMEntity rtmOperation) {
-        return rtmOperationRepository.save(rtmOperation);
+    public void save(RTMEntity rtmOperation) {
+         rtmOperationRepository.save(rtmOperation);
     }
 }
 

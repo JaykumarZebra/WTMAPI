@@ -1,4 +1,4 @@
-package com.jayzebra.feedsmodule.adapter;
+package com.jayzebra.feedsmodule.adapter.out;
 
 import com.jayzebra.feedsmodule.adapter.out.entity.FeedOperationEntity;
 import com.jayzebra.feedsmodule.adapter.out.repository.FeedOperationRepository;

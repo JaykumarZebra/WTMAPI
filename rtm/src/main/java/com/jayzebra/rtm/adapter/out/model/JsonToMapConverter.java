@@ -1,11 +1,11 @@
-package com.jayzebra.rtm.adapter.out.module;
+package com.jayzebra.rtm.adapter.out.model;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.IOException;
+
 import java.util.Map;
 
 @Component

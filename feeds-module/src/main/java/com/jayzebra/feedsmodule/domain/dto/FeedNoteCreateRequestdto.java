@@ -1,10 +1,7 @@
 package com.jayzebra.feedsmodule.domain.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.OffsetDateTime;
 
@@ -13,9 +10,11 @@ import java.time.OffsetDateTime;
  * Based on the FeedNoteCreate schema in the OpenAPI specification, using Lombok.
  */
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class FeedNoteCreateRequestdto {
 
     @NotBlank(message = "Message cannot be empty.")

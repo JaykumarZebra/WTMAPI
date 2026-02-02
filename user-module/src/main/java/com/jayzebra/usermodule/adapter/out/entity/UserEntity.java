@@ -6,7 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "users") // Good practice to explicitly name the table
 public class UserEntity {
 

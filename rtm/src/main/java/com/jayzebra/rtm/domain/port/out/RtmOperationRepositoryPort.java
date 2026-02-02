@@ -6,5 +6,5 @@ import org.springframework.modulith.NamedInterface;
 
 @NamedInterface
 public interface RtmOperationRepositoryPort {
-    RTMEntity save(RTMEntity rtmOperation);
+    void save(RTMEntity rtmOperation);
 }

@@ -1,29 +1,23 @@
 package com.jayzebra.feedsmodule.domain.dto;
 
 import com.jayzebra.feedsmodule.adapter.out.entity.FeedOperationEntity;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Map;
 @Getter
-@Data
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 // Data Transfer Object (DTO) representing the JSON request body for performing an action on a feed.
 public class FeedOperationRequestDto {
     private FeedOperationType operation;
     // A flexible key-value map for data specific to the operation
     private Map<String, Object> payload;
 
-    public FeedOperationType getOperation() {
-        return operation;
-    }
-
     public void setOperation(FeedOperationType operation) {
         this.operation = operation;
-    }
-
-    public Map<String, Object> getPayload() {
-        return payload;
     }
 
     public void setPayload(Map<String, Object> payload) {

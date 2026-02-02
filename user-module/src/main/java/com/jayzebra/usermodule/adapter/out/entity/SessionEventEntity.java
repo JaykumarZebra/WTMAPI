@@ -14,7 +14,8 @@ import java.time.Instant;
 @NamedInterface
 @Entity
 @Table(name = "session_events")
-@Data
+@Getter
+@Setter
 public class SessionEventEntity {
 
     @Id

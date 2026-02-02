@@ -1,12 +1,12 @@
 package com.jayzebra.usermodule.domain.dto;
 
+import lombok.*;
+
+
 import lombok.Data;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 public class UserAssetUploadResponseDto {
     private String userId;
