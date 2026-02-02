@@ -142,7 +142,7 @@ WTMMyWorkAPI-parent/
 ```
 
 ## Workflow Diagram Of Project
-![Workflow Diagram of Project](assets/image.png)
+![Workflow Diagram of Project](assets/image.jpg)
 
 ---
 
