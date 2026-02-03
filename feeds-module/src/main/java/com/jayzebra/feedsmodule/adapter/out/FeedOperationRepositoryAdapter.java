@@ -5,10 +5,9 @@ import com.jayzebra.feedsmodule.adapter.out.repository.FeedOperationRepository;
 import com.jayzebra.feedsmodule.domain.port.output.FeedOperationRepositoryPort;
 import org.springframework.stereotype.Repository;
 
-/**
- * Output adapter
- * implementation of all methods in output port and connected with DB
- **/
+
+ // Output adapter
+
 
 @Repository
 public class FeedOperationRepositoryAdapter implements FeedOperationRepositoryPort {

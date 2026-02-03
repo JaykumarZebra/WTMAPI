@@ -7,10 +7,9 @@ import org.springframework.modulith.NamedInterface;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Output port
- * Implementation is in output adapter
- **/
+
+ //Output port
+
 @NamedInterface
 public interface FeedRepositoryPort {
 

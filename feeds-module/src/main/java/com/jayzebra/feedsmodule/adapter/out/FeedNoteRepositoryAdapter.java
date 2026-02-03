@@ -14,11 +14,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-/**
- * Output adapter
- * implementation of all methods in output port and connected with DB
- **/
-
+//Output adapter
 @Repository
 public class FeedNoteRepositoryAdapter implements FeedNoteRepositoryPort {
     private final FeedNoteRepository feedNoteRepository;

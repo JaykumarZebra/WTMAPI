@@ -2,14 +2,15 @@ package com.jayzebra.feedsmodule.domain.dto;
 
 
 import lombok.*;
+import org.springframework.modulith.NamedInterface;
 
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
-/**
- * DTO representing a single Feed item in API responses.
- * Based on the Feed schema in the OpenAPI specification, using Lombok.
- */
+
+//DTO representing a single Feed item in API responses.
+
+@NamedInterface
 @Getter
 @Setter
 @NoArgsConstructor

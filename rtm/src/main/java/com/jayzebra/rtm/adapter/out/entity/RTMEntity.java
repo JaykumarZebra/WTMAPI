@@ -10,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +25,7 @@ public class RTMEntity {
 
     // Getters and Setters
     @Id
+    @NotBlank
     private String id;
 
     @Enumerated(EnumType.STRING)

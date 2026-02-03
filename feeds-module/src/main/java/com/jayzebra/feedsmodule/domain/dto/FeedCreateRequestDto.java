@@ -4,10 +4,7 @@ import lombok.*;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.modulith.NamedInterface;
 
-/**
- * DTO for the POST /feeds request body.
- * Based on the FeedCreate schema in the OpenAPI specification, using Lombok.
- */
+//Dto for creating feed request
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

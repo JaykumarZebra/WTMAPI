@@ -16,10 +16,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Output adapter
- * implementation of all methods in output port and connected with DB
- **/
+
+ // Output adapter
+
 @AllArgsConstructor
 @Repository
 public class FeedRepositoryAdapter implements FeedRepositoryPort {
@@ -27,7 +26,7 @@ public class FeedRepositoryAdapter implements FeedRepositoryPort {
     private final ModelMapper modelMapper;
 
 
-    //Fucntion to save the feed in DB
+    //Function to save the feed in DB
     @Override
     public void save(FeedCreateRequestDto feedCreateRequestDto) {
         // Here we map the Dto to entity as we can interact with DB

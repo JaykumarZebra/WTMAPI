@@ -6,10 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
-/**
- * Main application class.
- * The annotations here are critical for a multi-module project.
- */
+//Main application class
 
 @SpringBootApplication(scanBasePackages = "com.jayzebra")
 
