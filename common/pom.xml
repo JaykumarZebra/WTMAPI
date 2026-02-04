@@ -7,7 +7,7 @@
     <!--  EDIT 1: This now correctly points to YOUR project's parent POM.  -->
     <!-- =================================================================== -->
     <parent>
-        <groupId>com.jayzebra</groupId>
+        <groupId>com.zebra</groupId>
         <artifactId>WTMMyWorkAPI-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>

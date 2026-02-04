@@ -11,7 +11,7 @@
     </parent>
 
 
-    <groupId>com.jayzebra</groupId>
+    <groupId>com.zebra</groupId>
     <artifactId>WTMMyWorkAPI-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -49,32 +49,32 @@
             </dependency>
 
             <dependency>
-                <groupId>com.jayzebra</groupId>
+                <groupId>com.zebra</groupId>
                 <artifactId>application</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.jayzebra</groupId>
+                <groupId>com.zebra</groupId>
                 <artifactId>common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.jayzebra</groupId>
+                <groupId>com.zebra</groupId>
                 <artifactId>feeds-module</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.jayzebra</groupId>
+                <groupId>com.zebra</groupId>
                 <artifactId>user-module</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.jayzebra</groupId>
+                <groupId>com.zebra</groupId>
                 <artifactId>surveys</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.jayzebra</groupId>
+                <groupId>com.zebra</groupId>
                 <artifactId>rtm</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -136,10 +136,10 @@
                             <outputFormat>HTML</outputFormat>
                         </outputFormats>
                         <targetClasses>
-                            <param>com.jayzebra.*</param>
+                            <param>com.zebra.*</param>
                         </targetClasses>
                         <targetTests>
-                            <param>com.jayzebra.*</param>
+                            <param>com.zebra.*</param>
                         </targetTests>
                     </configuration>
                 </plugin>

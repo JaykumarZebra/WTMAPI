@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.jayzebra</groupId>
+        <groupId>com.zebra</groupId>
         <artifactId>WTMMyWorkAPI-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
@@ -24,7 +24,7 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.jayzebra</groupId>
+            <groupId>com.zebra</groupId>
             <artifactId>common</artifactId>
         </dependency>
         <dependency>

@@ -7,7 +7,7 @@
     <!--  EDIT 1: Correctly points to YOUR project's parent POM.           -->
     <!-- =================================================================== -->
     <parent>
-        <groupId>com.jayzebra</groupId>
+        <groupId>com.zebra</groupId>
         <artifactId>WTMMyWorkAPI-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
@@ -27,7 +27,7 @@
 
         <!-- Dependency on your own 'common' module (assuming it's needed) -->
         <dependency>
-            <groupId>com.jayzebra</groupId>
+            <groupId>com.zebra</groupId>
             <artifactId>common</artifactId>
         </dependency>
 
