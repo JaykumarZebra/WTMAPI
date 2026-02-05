@@ -35,7 +35,7 @@ class UserControllerTest {
 
     @Test
     void listUsers_shouldReturnListOfUsers_whenUsersExist() throws Exception {
-        //  Creating DTOs using setters to match new structure
+        // --- CHANGE #1: Create DTOs using setters to match new structure ---
         UserDto user1 = new UserDto();
         user1.setId("user-1");
         user1.setUsername("johndoe");
@@ -58,7 +58,7 @@ class UserControllerTest {
         mockMvc.perform(get("/users")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                //Updating JsonPath assertions
+                // --- CHANGE #2: Update JsonPath assertions ---
                 .andExpect(jsonPath("$.users", hasSize(2)))
                 .andExpect(jsonPath("$.users[0].id", is("user-1")))
                 .andExpect(jsonPath("$.users[0].username", is("johndoe")))
@@ -69,6 +69,7 @@ class UserControllerTest {
 
     @Test
     void listUsers_shouldReturnEmptyList_whenNoUsersExist() throws Exception {
+        // (No changes needed here)
         when(userUseCase.listUsers()).thenReturn(Collections.emptyList());
 
         mockMvc.perform(get("/users")
@@ -82,7 +83,7 @@ class UserControllerTest {
         // Arrange
         String userId = "user-123";
 
-        // Creating DTO using setters
+        // --- CHANGE #3: Create DTO using setters ---
         UserDto user = new UserDto();
         user.setId(userId);
         user.setUsername("testuser");
@@ -97,7 +98,7 @@ class UserControllerTest {
         mockMvc.perform(get("/users/{userId}", userId)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                // Updating JsonPath assertions
+                // --- CHANGE #4: Update JsonPath assertions ---
                 .andExpect(jsonPath("$.id", is(userId)))
                 .andExpect(jsonPath("$.username", is("testuser")))
                 .andExpect(jsonPath("$.firstName", is("Test")))
@@ -108,6 +109,7 @@ class UserControllerTest {
 
     @Test
     void getUser_shouldReturn404_whenUserDoesNotExist() throws Exception {
+        // (No changes needed here)
         String userId = "non-existent-user";
 
         when(userUseCase.getUserById(userId)).thenReturn(Optional.empty());

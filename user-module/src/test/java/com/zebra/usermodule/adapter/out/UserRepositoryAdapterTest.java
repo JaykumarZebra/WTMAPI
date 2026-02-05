@@ -14,14 +14,13 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.*;
 
-
- //Unit tests for UserRepositoryAdapter.
- //This class verifies that the adapter correctly delegates all method calls
- //to the underlying UserRepository, ensuring full mutation coverage.
+/**
+ * Unit tests for UserRepositoryAdapter.
+ * This class verifies that the adapter correctly delegates all method calls
+ * to the underlying UserRepository, ensuring full mutation coverage.
+ */
 class UserRepositoryAdapterTest {
 
     @Mock

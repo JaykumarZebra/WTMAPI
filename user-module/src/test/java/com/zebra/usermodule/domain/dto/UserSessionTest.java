@@ -5,26 +5,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-class UserSessionTest {
+class UserSessionsTest {
 
     @Test
     void testUserSessionsCreationAndGetters() {
-        // Creating an instance of UserSessions
+        // 1. Create an instance of UserSessions
         UserSessions userSessions = new UserSessions();
         assertNotNull(userSessions); // Ensure the object is not null initially
 
-        // Checking initial state (should be null for String fields)
+        // Check initial state (should be null for String fields)
         assertNull(userSessions.getUserId());
         assertNull(userSessions.getSessionId());
 
-        // Setting values
+        // 2. Set values
         String expectedUserId = "testUser123";
         String expectedSessionId = "abcdef123456";
 
         userSessions.setUserId(expectedUserId);
         userSessions.setSessionId(expectedSessionId);
 
-        // Retrieving and  Asserting values
+        // 3. Retrieve and 4. Assert values
         assertEquals(expectedUserId, userSessions.getUserId(), "The userId should match the set value.");
         assertEquals(expectedSessionId, userSessions.getSessionId(), "The sessionId should match the set value.");
     }

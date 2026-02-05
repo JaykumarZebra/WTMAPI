@@ -1,8 +1,9 @@
 package com.zebra.usermodule.domain.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.AllArgsConstructor;
+import lombok.*;
+
+
+import lombok.Data;
 
 @Getter
 @Setter

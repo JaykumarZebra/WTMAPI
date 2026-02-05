@@ -42,16 +42,17 @@ public class UserService implements UserUseCase {
         UserEntity user = userRepositoryPort.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
 
-
-        // we are just generating a dummy path.
+        // 2. In a real application, you would upload the file to a cloud storage
+        //    service (like AWS S3, Google Cloud Storage) and get back a URL.
+        //    For this example, we'll just generate a dummy path.
         String fileExtension = getFileExtension(imageFile.getOriginalFilename());
         String newFileName = UUID.randomUUID() + "." + fileExtension;
         String imageUrl = "/images/users/" + newFileName; // Example URL
 
-        // Updating the user's profile image URL
+        // 3. Update the user's profile image URL
         user.setProfileImageUrl(imageUrl);
 
-        //  Saving the updated user entity
+        // 4. Save the updated user entity
         userRepositoryPort.save(user);
     }
 
