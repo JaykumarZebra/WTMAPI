@@ -16,9 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
-/**
- Service - Main logic
- **/
+
 @Service
 public class SurveyService implements SurveyUseCase {
 
