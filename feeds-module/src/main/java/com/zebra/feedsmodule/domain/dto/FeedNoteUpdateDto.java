@@ -1,9 +1,7 @@
 package com.zebra.feedsmodule.domain.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 //DTO for requesting feedNote update
 @Data

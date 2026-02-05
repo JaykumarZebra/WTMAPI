@@ -1,13 +1,15 @@
 package com.zebra.feedsmodule.domain.dto;
 
-import lombok.Data;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
+
   //DTO representing  FeedNote list in API responses.
+
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

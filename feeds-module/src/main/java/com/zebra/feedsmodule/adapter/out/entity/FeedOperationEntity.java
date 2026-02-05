@@ -1,12 +1,7 @@
 package com.zebra.feedsmodule.adapter.out.entity;
 
 import com.zebra.feedsmodule.domain.model.FeedsJsonToMapConverter;
-import jakarta.persistence.Id;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Convert;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -40,6 +35,48 @@ public class FeedOperationEntity {
     @CreationTimestamp
     @Column(nullable = false,updatable = false)
     private OffsetDateTime createdAt;
+
+
+    //Getters and Setters for all attributes of table
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public FeedOperationType getOperation() {
+        return operation;
+    }
+
+    public void setOperation(FeedOperationType operation) {
+        this.operation = operation;
+    }
+
+    public Map<String, Object> getPayload() {
+        return payload;
+    }
+
+    public void setPayload(Map<String, Object> payload) {
+        this.payload = payload;
+    }
+
+    public FeedOperationStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(FeedOperationStatus status) {
+        this.status = status;
+    }
+
+    public OffsetDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(OffsetDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 
 
     //enum class for operation type

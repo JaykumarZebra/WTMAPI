@@ -1,12 +1,8 @@
 package com.zebra.feedsmodule.domain.dto;
 
+
 import jakarta.validation.constraints.NotBlank;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.ToString;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 //DTO for requesting feed update
 @Getter

@@ -1,13 +1,8 @@
 package com.zebra.feedsmodule.domain.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.Getter;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-import java.util.Map;
+import lombok.*;
 
+import java.util.Map;
 @Getter
 @Setter
 @AllArgsConstructor
